@@ -43,10 +43,10 @@ int main(int argc, char **argv) {
 	ut_run( test02 );
 	ut_run( test03 );
 
-	printf("\nDone.\n");
+	printf("\n*******RESULTS*******\n");
 	printf("Tests run: %10d\n", tests_run);
 	printf("Tests passed: %7d\n", tests_passed);
-	printf("%3.1f%% of tests passed.\n", 100*(double)tests_passed/tests_run);
+	printf("%3.1f%% of tests passed.\n\n", 100*(double)tests_passed/tests_run);
 
-	return 0;
+	return tests_failed;
 }

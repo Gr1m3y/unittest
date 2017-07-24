@@ -6,9 +6,14 @@
 //
 // Simple unit test framework for C
 
-#define SUCCESS() do { printf("[ OK ]\n"); \
+// Colours
+#define RED "\x1B[31m"		// Red
+#define GRN "\x1B[32m"		// Green
+#define RST "\x1B[0m"		// Reset colours
+
+#define SUCCESS() do { printf("[ " GRN "OK" RST " ]\n"); \
 	tests_passed++; } while (0)
-#define FAIL() do { printf("[FAIL]\n"); \
+#define FAIL() do { printf("[" RED "FAIL" RST "]\n"); \
 	tests_failed++; } while (0)
 #define ut_assert(test) do { printf("%-30s", __func__); \
 	if(!(test)) { FAIL(); } \

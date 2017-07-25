@@ -11,19 +11,52 @@
 #define GRN "\x1B[32m"		// Green
 #define RST "\x1B[0m"		// Reset colours
 
+
+
 // Success message
 #define SUCCESS() do { printf("[ " GRN "OK" RST " ]\n"); \
 	tests_passed++; } while (0)
 // Fail message
 #define FAIL() do { printf("[" RED "FAIL" RST "]\n"); \
 	tests_failed++; } while (0)
+
+#ifndef VERBOSE		// Only presents information for each test
 // assert function for test
 #define ut_assert(test) do { printf("%-30s", __func__); \
-	if(!(test)) { FAIL(); } \
-	else { SUCCESS(); return 0 ; } } while (0)
+	if(!(test)) { return 1; } \
+	else { return 0 ; } } while (0)
 // test runner
 #define ut_run(test) do { int result = test(); tests_run++; \
-	if ( result ) return result; } while (0)
+	if ( result ) { FAIL(); } \
+	else { SUCCESS(); } } while (0)
+
+
+// NOTE: For now, the verbose version does not work. Need to think about anice
+// way to prevent returning from ut_assert so that all asserts can be run
+
+#else				// Version that presents information for all
+					// asserts that are made
+
+#define assert_SUCCESS() do { printf("[ " GRN "OK" RST " ]\n"); \
+	} while(0)
+#define assert_FAIL() do { printf("[" RED "FAIL" RST "]\n"); 	\
+	} while(0)
+
+
+#define ut_assert(test) do { printf("\tLine: %-15d", __LINE__); 	\
+	if (!(test)) { assert_FAIL() ; return 1; } 						\
+	else { assert_SUCCESS() ; return 0; } } while (0)
+
+#define ut_run(test) do { printf( #test "...\n" );	\
+	int result = test(); tests_run++;				\
+	printf("%-35s", "Result:");						\
+	if( result ) { FAIL(); }						\
+	else { SUCCESS(); } } while(0)
+
+
+#endif
+
+
 
 // Summary data
 extern int tests_run;

@@ -21,11 +21,14 @@ int square(int x) {
 
 int test01() {
 	ut_assert( square(5) == 25 );
+	ut_assert( square(2) == 4 );
 	return 0;
 }
 
 int test02() {
-	ut_assert( square(0) == 1 );
+	ut_assert( square(0) == 0 );
+	ut_assert( square(2) == 5 );
+	ut_assert( square(3) == 9 );
 	return 0;
 }
 

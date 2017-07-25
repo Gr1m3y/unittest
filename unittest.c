@@ -20,34 +20,22 @@ int square(int x) {
 }
 
 // WRITE TESTS HERE
+/*******************************************************************/
 
-int test01() {
-	ut_assert( square(5) == 25 );
-	ut_assert( square(2) == 4 );
-	return 0;
-}
 
-int test02() {
-	ut_assert( square(0) == 0 );
-	ut_assert( square(2) == 5 );
-	ut_assert( square(3) == 9 );
-	return 0;
-}
 
-int test03() {
-	ut_assert( square(1) == 1 );
-	return 0;
-}
+/*******************************************************************/
 
 int main(int argc, char **argv) {
 	
 	printf("Starting test driver...\n\n");
 
+	/*******************************************************************/
 	// RUN TESTS HERE
-	ut_run( test01 );
-	ut_run( test02 );
-	ut_run( test03 );
+	
 
+
+	/*******************************************************************/
 	printf("\n**********RESULTS**********\n");
 	
 	if ( tests_run ) {

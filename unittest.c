@@ -12,6 +12,8 @@
 int tests_run = 0;
 int tests_passed = 0;
 int tests_failed = 0;
+int asserts_passed = 0;
+int asserts_failed = 0;
 
 int square(int x) {
 	return x*x;

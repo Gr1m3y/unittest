@@ -38,27 +38,28 @@
 					// asserts that are made
 
 #define assert_SUCCESS() do { printf("[ " GRN "OK" RST " ]\n"); \
-	} while(0)
+	asserts_passed++; } while(0)
 #define assert_FAIL() do { printf("[" RED "FAIL" RST "]\n"); 	\
-	} while(0)
+	asserts_failed++; } while(0)
 
 
 #define ut_assert(test) do { printf("\tLine: %-15d", __LINE__); 	\
-	if (!(test)) { assert_FAIL() ; return 1; } 						\
-	else { assert_SUCCESS() ; return 0; } } while (0)
+	if (!(test)) { assert_FAIL() ; } 						\
+	else { assert_SUCCESS() ; } } while (0)
 
 #define ut_run(test) do { printf( #test "...\n" );	\
-	int result = test(); tests_run++;				\
+	int current = asserts_failed;					\
+	test(); tests_run++;							\
 	printf("%-35s", "Result:");						\
-	if( result ) { FAIL(); }						\
+	if( asserts_failed-current ) { FAIL(); }		\
 	else { SUCCESS(); } } while(0)
 
 
 #endif
 
-
-
 // Summary data
 extern int tests_run;
 extern int tests_passed;
 extern int tests_failed;
+extern int asserts_failed;
+extern int asserts_passed;
